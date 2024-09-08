@@ -4,17 +4,18 @@
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2                                      // thumbs
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
-  ZMK_BEHAVIOR(NAME, hold_tap, \
-      flavor = "balanced"; \
-      tapping-term-ms = <280>; \
-      quick-tap-ms = <QUICK_TAP_MS>; \
-      bindings = <HOLD>, <TAP>; \
-      hold-trigger-key-positions = <TRIGGER_POS>; \
-      hold-trigger-on-release; \
-      )
+    ZMK_HOLD_TAP(NAME, \
+        flavor = "balanced"; \
+        tapping-term-ms = <280>; \
+        quick-tap-ms = <QUICK_TAP_MS>; \
+        require-prior-idle-ms = <150>; \
+        bindings = <HOLD>, <TAP>; \
+        hold-trigger-key-positions = <TRIGGER_POS>; \
+        hold-trigger-on-release; \
+    )
 
-MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
-MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand
+/*MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)*/
+/*MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)*/
 
 // Base Layer home row mods
 #define A_LGUI     &hml LGUI A
