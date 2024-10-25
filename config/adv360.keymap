@@ -51,6 +51,18 @@
         #binding-cells = <0>;
         bindings = <&kp CAPS &tog CAPS_LAYER>;
     };
+     
+    macro_oe: macro_oe {
+      compatible = "zmk,behavior-macro";
+      label = "Write ö";
+      wait-ms = <40>;
+      tap-ms = <40>;
+      bindings = 
+        <&macro_press   &kp LALT>,
+        <&macro_tap     &kp KP_N1 &kp KP_N4 &kp KP_N8>,
+        <&macro_release &kp LALT>
+      ;
+    };
   };
 
   keymap {
@@ -75,20 +87,20 @@
       >;
     };
     keypad {
-      bindings = < &kp EQUAL &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &trans                                                           &mo 3 &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 3     &kp GRAVE &macro_caps &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
+      bindings = < &kp EQUAL &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &trans                                                              &mo 3 &kp N6  &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
+        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                               &none &kp Y   &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
+        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL              &none &kp H   &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
+        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                              &kp N   &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
+        &mo 3     &kp GRAVE &macro_caps &kp LEFT &kp RIGHT                &kp BSPC &kp LALT DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0          &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
       >;
     };
     fn {
       bindings = <
-        &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &tog 2                                           &mo 3 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-        &trans &trans &trans &trans &trans &trans  &none                                           &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans        &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans                      &trans &trans                     &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans              &trans &trans &trans  &trans  &trans
+        &kp F1        &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &tog 2                                           &mo 3 &kp F7 &kp F8       &kp F9 &kp F10 &kp F11 &kp F12
+        &trans        &trans &trans &trans &trans &trans  &none                                           &none &trans &macro_oe    &trans &macro_oe &trans  &trans
+        &macro_oe     &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans        &none &trans &trans       &trans &trans  &trans  &trans
+        &trans        &trans &trans &trans &trans &trans                      &trans &trans                     &trans &trans       &trans &trans  &trans  &trans
+        &trans        &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans              &trans       &trans &trans  &trans  &trans
       >;
     };
     mod {
